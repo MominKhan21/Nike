@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider with Dots</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-100">
+
+<div class="flex items-center justify-center h-screen">
+    <div class="relative w-72 overflow-hidden">
+        <div class="flex transition-transform duration-300 ease-in-out" style="transform: translateX(0);">
+            <div class="w-full flex-shrink-0">
+                <img src="images/sho.jpg" alt="Image 1" class="w-full h-auto">
+            </div>
+            <div class="w-full flex-shrink-0">
+                <img src="images/sho1.jpg" alt="Image 2" class="w-full h-auto">
+            </div>
+            <!-- Add more images as needed -->
+        </div>
+        <div class="flex justify-center mt-2 space-x-2">
+            <button onclick="currentSlide(1)" class="dot"></button>
+            <button onclick="currentSlide(2)" class="dot"></button>
+            <!-- Add more dots as needed -->
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentSlideIndex = 1;
+
+    function showSlide(index) {
+        const slider = document.querySelector('.flex');
+        const slides = document.querySelectorAll('.flex-shrink-0');
+        const dots = document.querySelectorAll('.dot');
+
+        if (index > slides.length) {
+            currentSlideIndex = 1;
+        } else if (index < 1) {
+            currentSlideIndex = slides.length;
+        } else {
+            currentSlideIndex = index;
+        }
+
+        const translateValue = -100 * (currentSlideIndex - 1);
+        slider.style.transform = `translateX(${translateValue}%)`;
+
+        // Update dots
+        dots.forEach(dot => dot.classList.remove('bg-black'));
+        dots[currentSlideIndex - 1].classList.add('bg-black');
+    }
+
+    function currentSlide(index) {
+        showSlide(index);
+    }
+
+    // Initial display
+    showSlide(currentSlideIndex);
+</script>
+
+</body>
+</html>
