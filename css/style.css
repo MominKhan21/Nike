@@ -96,3 +96,10 @@ body{background: white;}
         transform: none;
         transition: 1s cubic-bezier(.18, 0, 0, 1.2) .5s;
     }
+.nav01{
+  position: static;
+  top: 0;
+  max-height: 100px;
+  z-index: 100;
+        }
+   
